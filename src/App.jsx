@@ -1,7 +1,12 @@
 import "./App.css";
+import TitleScreen from "./components/TitleScreen";
 
 function App() {
-  return <></>;
+  return (
+    <>
+      <TitleScreen />
+    </>
+  );
 }
 
 export default App;
