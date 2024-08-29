@@ -20,6 +20,7 @@ export default function TitleScreen() {
     return () => clearInterval(key);
   }, []);
 
+  //set bg music
   useEffect(() => {
     const key = bgMusic();
 
