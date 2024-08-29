@@ -1,0 +1,51 @@
+button {
+  position: relative;
+  height: 40px;
+  width: calc(40px * 10);
+  cursor: pointer;
+  user-select: none;
+  background: url("../assets/images/button-background.png");
+  image-rendering: pixelated;
+  border: 2px solid #000;
+}
+
+button:hover {
+  background: none;
+  background-color: #6a6ab0;
+  text-shadow: 2px 2px #202013cc;
+  color: #ffffa0;
+}
+
+button {
+  font-size: 1rem;
+  font-family: Minecraftia;
+  width: calc(40px * 10);
+  padding-bottom: 0.3em;
+
+  color: #ddd;
+  text-shadow: 2px 2px #000a;
+  box-shadow: inset -2px -4px #0006, inset 2px 2px #fff7;
+}
+
+.big-buttons {
+  display: grid;
+  grid-template: 1fr;
+  row-gap: 8px;
+}
+
+.small-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  column-gap: 8px;
+}
+
+.small-buttons > * {
+  width: calc(39px * 5);
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 16px;
+}
