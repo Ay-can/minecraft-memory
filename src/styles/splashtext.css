@@ -1,0 +1,49 @@
+.splash-text,
+.custom-splash-text {
+  color: #fdff04;
+  font-size: 1.1rem;
+  font-weight: 600;
+  position: relative;
+  transform: rotate(-20deg);
+  bottom: 200px;
+  left: 540px;
+  user-select: none;
+  animation: splash-animation-tilted 3s ease-out infinite;
+}
+
+.custom-splash-text {
+  bottom: 0;
+  left: 0;
+  animation: splash-animation-straight 3s ease-out infinite;
+}
+.custom-splash-text:hover {
+  color: red;
+}
+
+@keyframes splash-animation-tilted {
+  0% {
+    transform: rotate(-15deg) scale(1, 1);
+  }
+
+  50% {
+    transform: rotate(-15deg) scale(1.5, 1.5);
+  }
+
+  100% {
+    transform: rotate(-15deg) scale(1, 1);
+  }
+}
+
+@keyframes splash-animation-straight {
+  0% {
+    transform: scale(1, 1);
+  }
+
+  50% {
+    transform: scale(1.5, 1.5);
+  }
+
+  100% {
+    transform: scale(1, 1);
+  }
+}

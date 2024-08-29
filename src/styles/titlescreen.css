@@ -5,3 +5,17 @@
   min-width: 100%;
   min-height: 100%;
 }
+
+.logo {
+  position: relative;
+  margin-top: 40px;
+  width: 600px;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  row-gap: 100px;
+}

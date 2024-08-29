@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react";
 import { minecraftCherryBg, minecraftRainBg } from "../assets/videos/videos";
+import { minecraftLogo } from "../assets/images/images";
+
 import mogCity from "../assets/music/C418-mog.mp3";
 import useSound from "use-sound";
+
+import "../styles/titlescreen.css";
+import SplashText from "./SplashText";
+import Footer from "./Footer";
 
 export default function TitleScreen() {
   const [currentBg, setCurrentBg] = useState("");
@@ -40,6 +46,13 @@ export default function TitleScreen() {
         src={currentBg}
         type="video/mp4"
       ></video>
+      <div className="main">
+        <div className="logo-container">
+          <img className="logo" src={minecraftLogo} alt="" />
+          <SplashText animationStyle="splash-animation-tilted" />
+        </div>
+        <Footer />
+      </div>
     </>
   );
 }

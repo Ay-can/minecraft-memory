@@ -1,4 +1,7 @@
 import { useEffect, useState } from "react";
+import SplashText from "./SplashText";
+
+import "../styles/footer.css";
 
 export default function Footer() {
   const [mcProfilePic, setMcProfilePic] = useState("");
@@ -18,7 +21,10 @@ export default function Footer() {
         target="_blank noopener noreferer"
         className="footer-text credits"
       >
-        Created by Ay-can
+        <SplashText
+          customText="Created By Ay-can"
+          animationStyle={"splash-animation-straight"}
+        />
       </a>
     </div>
   );
