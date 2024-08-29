@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import { minecraftCherryBg, minecraftRainBg } from "../assets/videos/videos";
+import mogCity from "../assets/music/C418-mog.mp3";
+import useSound from "use-sound";
 
 export default function TitleScreen() {
   const [currentBg, setCurrentBg] = useState("");
+  const [bgMusic, { stop }] = useSound(mogCity, { volume: "0.1" });
 
   const randomBg = () => {
     const bgOptions = [minecraftCherryBg, minecraftRainBg];
@@ -11,10 +14,20 @@ export default function TitleScreen() {
     setCurrentBg(selectBg);
   };
 
+  // set Background image
   useEffect(() => {
     const key = randomBg();
     return () => clearInterval(key);
   }, []);
+
+  useEffect(() => {
+    const key = bgMusic();
+
+    return () => {
+      clearInterval(key);
+      stop();
+    };
+  }, [bgMusic, stop]);
 
   return (
     <>
