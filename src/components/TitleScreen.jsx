@@ -7,7 +7,7 @@ import SplashText from "./SplashText";
 import Footer from "./Footer";
 import Button from "./Button";
 
-export default function TitleScreen() {
+export default function TitleScreen({ handleClick }) {
   const [currentBg, setCurrentBg] = useState("");
 
   const randomBg = () => {
@@ -39,14 +39,14 @@ export default function TitleScreen() {
           <SplashText animationStyle="splash-animation-tilted" />
         </div>
         <div className="big-buttons">
-          <Button btnText="Singleplayer" />
-          <Button btnText="Multiplayer" />
-          <Button btnText="Minecraft Realms" />
+          <Button btnText="Singleplayer" handleClick={handleClick} />
+          <Button btnText="Multiplayer" handleClick={handleClick} />
+          <Button btnText="Minecraft Realms" handleClick={handleClick} />
         </div>
 
         <div className="small-buttons">
-          <Button btnText="Options" />
-          <Button btnText="Quit Game" />
+          <Button btnText="Options" handleClick={handleClick} />
+          <Button btnText="Quit Game" handleClick={handleClick} />
         </div>
         <Footer />
       </div>
