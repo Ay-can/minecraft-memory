@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 import "./App.css";
 import TitleScreen from "./components/TitleScreen";
+import Background from "./components/Background";
 
 import { mogCity } from "./assets/music/songs";
 import useSound from "use-sound";
@@ -10,12 +11,12 @@ function App() {
   const [gameMode, setGameMode] = useState("");
   const [bgMusic, { stop }] = useSound(mogCity, { volume: "0.1" });
 
-  const handleClick = (e) => {
+  const handleTitleScreenClick = (e) => {
     console.log(e.target.innerText);
     setGameMode(e.target.innerText);
   };
 
-  //set bg music
+  //set Background music
   useEffect(() => {
     const key = bgMusic();
 
@@ -28,6 +29,7 @@ function App() {
   if (gameMode === "Singleplayer") {
     return (
       <>
+        <Background />
         <p>Time to play</p>
       </>
     );
@@ -35,7 +37,8 @@ function App() {
 
   return (
     <>
-      <TitleScreen handleClick={handleClick} />
+      <Background />
+      <TitleScreen handleTitleScreenClick={handleTitleScreenClick} />
     </>
   );
 }
