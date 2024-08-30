@@ -1,17 +1,25 @@
 import { useEffect, useState } from "react";
 
 import GameCard from "./GameCard";
+import GameOver from "./GameOver";
+import SplashText from "./SplashText";
 
 import "../styles/gameboard.css";
 
 export default function GameBoard({ difficulty }) {
+  const [gameStatus, setGameStatus] = useState("playing");
   const [minecraftItems, setMinecraftItems] = useState([]);
   const clickedItems = [];
 
   const handleClick = (name) => {
     const hasAlreadyBeenClicked = clickedItems.includes(name);
     if (hasAlreadyBeenClicked) {
-      console.log(hasAlreadyBeenClicked);
+      setGameStatus("Game Over");
+      return (
+        <>
+          <GameOver />
+        </>
+      );
     } else {
       console.log("new entry");
       clickedItems.push(name);
@@ -38,20 +46,26 @@ export default function GameBoard({ difficulty }) {
       .then((response) => setMinecraftItems(durstenFeldShuffle(response)));
   }, []);
 
-  return (
-    <>
-      <div className="cards">
-        {minecraftItems.map((minecrafItem) => {
-          return (
-            <GameCard
-              key={minecrafItem.namespacedId}
-              name={minecrafItem.name}
-              img={minecrafItem.image}
-              handleClick={handleClick}
-            />
-          );
-        })}
-      </div>
-    </>
-  );
+  if (gameStatus !== "Game Over") {
+    return (
+      <>
+        <div className="difficulty-splash-container">
+          <SplashText customText="The rules are simple" />
+          <SplashText customText="Don't click on the same card twice!" />
+        </div>
+        <div className="cards">
+          {minecraftItems.map((minecrafItem) => {
+            return (
+              <GameCard
+                key={minecrafItem.namespacedId}
+                name={minecrafItem.name}
+                img={minecrafItem.image}
+                handleClick={handleClick}
+              />
+            );
+          })}
+        </div>
+      </>
+    );
+  }
 }

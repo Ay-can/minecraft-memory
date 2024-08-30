@@ -47,10 +47,6 @@ function App() {
     return (
       <>
         <Background />
-        <div className="difficulty-splash-container">
-          <SplashText customText="The rules are simple" />
-          <SplashText customText="Don't click on the same card twice!" />
-        </div>
         <GameBoard difficulty={difficulty} />
       </>
     );
