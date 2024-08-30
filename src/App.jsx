@@ -6,14 +6,19 @@ import Background from "./components/Background";
 
 import { mogCity } from "./assets/music/songs";
 import useSound from "use-sound";
+import DifficultyScreen from "./components/DifficultyScreen";
 
 function App() {
   const [gameMode, setGameMode] = useState("");
+  const [difficulty, setDifficulty] = useState("");
   const [bgMusic, { stop }] = useSound(mogCity, { volume: "0.1" });
 
   const handleTitleScreenClick = (e) => {
-    console.log(e.target.innerText);
     setGameMode(e.target.innerText);
+  };
+
+  const handleDifficultyClick = (e) => {
+    console.log(e.target.innerText);
   };
 
   //set Background music
@@ -30,7 +35,7 @@ function App() {
     return (
       <>
         <Background />
-        <p>Time to play</p>
+        <DifficultyScreen handleDifficultyClick={handleDifficultyClick} />
       </>
     );
   }

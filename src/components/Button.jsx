@@ -6,13 +6,13 @@ import "../styles/button.css";
 export default function Button({ btnText, handleClick }) {
   const [btnClickSound] = useSound(buttonClick, { volume: "0.3" });
 
-  const doSomething = (e) => {
+  const handleBtnClick = (e) => {
     handleClick(e);
     btnClickSound();
   };
 
   return (
-    <button type="button" onClick={(e) => doSomething(e)}>
+    <button type="button" onClick={(e) => handleBtnClick(e)}>
       {btnText}
     </button>
   );
