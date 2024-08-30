@@ -1,7 +1,22 @@
 import { useEffect, useState } from "react";
 
+import GameCard from "./GameCard";
+
+import "../styles/gameboard.css";
+
 export default function GameBoard({ difficulty }) {
   const [minecraftItems, setMinecraftItems] = useState([]);
+  const clickedItems = [];
+
+  const handleClick = (name) => {
+    const hasAlreadyBeenClicked = clickedItems.includes(name);
+    if (hasAlreadyBeenClicked) {
+      console.log(hasAlreadyBeenClicked);
+    } else {
+      console.log("new entry");
+      clickedItems.push(name);
+    }
+  };
 
   const durstenFeldShuffle = (arr) => {
     const newArr = arr.slice();
@@ -25,9 +40,18 @@ export default function GameBoard({ difficulty }) {
 
   return (
     <>
-      {minecraftItems.map((minecraftItem) => {
-        return <p>{minecraftItem.name}</p>;
-      })}
+      <div className="cards">
+        {minecraftItems.map((minecrafItem) => {
+          return (
+            <GameCard
+              key={minecrafItem.namespacedId}
+              name={minecrafItem.name}
+              img={minecrafItem.image}
+              handleClick={handleClick}
+            />
+          );
+        })}
+      </div>
     </>
   );
 }
