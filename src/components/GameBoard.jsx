@@ -6,22 +6,19 @@ import SplashText from "./SplashText";
 
 import "../styles/gameboard.css";
 
-export default function GameBoard({ difficulty }) {
-  const [gameStatus, setGameStatus] = useState("playing");
+export default function GameBoard({
+  gameStatus,
+  difficulty,
+  handleStatusChange,
+}) {
   const [minecraftItems, setMinecraftItems] = useState([]);
   const clickedItems = [];
 
   const handleClick = (name) => {
     const hasAlreadyBeenClicked = clickedItems.includes(name);
     if (hasAlreadyBeenClicked) {
-      setGameStatus("Game Over");
-      return (
-        <>
-          <GameOver />
-        </>
-      );
+      handleStatusChange("Game Over");
     } else {
-      console.log("new entry");
       clickedItems.push(name);
     }
   };
@@ -65,6 +62,12 @@ export default function GameBoard({ difficulty }) {
             );
           })}
         </div>
+      </>
+    );
+  } else {
+    return (
+      <>
+        <GameOver handleStatusChange={handleStatusChange} />;
       </>
     );
   }

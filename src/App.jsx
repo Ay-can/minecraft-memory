@@ -8,10 +8,10 @@ import GameBoard from "./components/GameBoard";
 import { mogCity } from "./assets/music/songs";
 import useSound from "use-sound";
 import DifficultyScreen from "./components/DifficultyScreen";
-import SplashText from "./components/SplashText";
 
 function App() {
   const [gameMode, setGameMode] = useState("");
+  const [gameStatus, setGameStatus] = useState("Not Playing");
   const [difficulty, setDifficulty] = useState("");
   const [bgMusic, { stop }] = useSound(mogCity, { volume: "0.1" });
 
@@ -22,6 +22,10 @@ function App() {
   const handleDifficultyClick = (e) => {
     setGameMode("");
     setDifficulty(e.target.innerText);
+  };
+
+  const handleStatusChange = (newStatus) => {
+    setGameStatus(newStatus);
   };
 
   //set Background music
@@ -47,7 +51,11 @@ function App() {
     return (
       <>
         <Background />
-        <GameBoard difficulty={difficulty} />
+        <GameBoard
+          gameStatus={gameStatus}
+          difficulty={difficulty}
+          handleStatusChange={handleStatusChange}
+        />
       </>
     );
   }

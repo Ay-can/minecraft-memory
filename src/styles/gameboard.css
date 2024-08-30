@@ -2,3 +2,12 @@
   display: grid;
   grid-template-columns: repeat(6, 1fr);
 }
+
+.game-over-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  row-gap: 16px;
+}
