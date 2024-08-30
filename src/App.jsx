@@ -3,10 +3,12 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import TitleScreen from "./components/TitleScreen";
 import Background from "./components/Background";
+import GameBoard from "./components/GameBoard";
 
 import { mogCity } from "./assets/music/songs";
 import useSound from "use-sound";
 import DifficultyScreen from "./components/DifficultyScreen";
+import SplashText from "./components/SplashText";
 
 function App() {
   const [gameMode, setGameMode] = useState("");
@@ -18,7 +20,8 @@ function App() {
   };
 
   const handleDifficultyClick = (e) => {
-    console.log(e.target.innerText);
+    setGameMode("");
+    setDifficulty(e.target.innerText);
   };
 
   //set Background music
@@ -36,6 +39,19 @@ function App() {
       <>
         <Background />
         <DifficultyScreen handleDifficultyClick={handleDifficultyClick} />
+      </>
+    );
+  }
+
+  if (difficulty === "Easy") {
+    return (
+      <>
+        <Background />
+        <div className="difficulty-splash-container">
+          <SplashText customText="The rules are simple" />
+          <SplashText customText="Don't click on the same card twice!" />
+        </div>
+        <GameBoard difficulty={difficulty} />
       </>
     );
   }
