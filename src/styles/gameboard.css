@@ -1,7 +1,14 @@
 .cards {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
+  grid-column: auto;
   grid-row: auto;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 200px;
+  padding: 90px;
+  padding-top: 0;
+  gap: 32px;
 }
 
 .game-over-container {

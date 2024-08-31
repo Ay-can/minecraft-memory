@@ -69,6 +69,17 @@ function App() {
         />
       </>
     );
+  } else if (difficulty === "Hard") {
+    return (
+      <>
+        <Background />
+        <GameBoard
+          gameStatus={gameStatus}
+          difficulty={difficulty}
+          handleStatusChange={handleStatusChange}
+        />
+      </>
+    );
   }
 
   return (

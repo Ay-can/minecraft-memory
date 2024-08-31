@@ -46,8 +46,8 @@ export default function GameBoard({
         //slice the amount of items based on difficulty
         const blockLimitBasedOnDifficulty = {
           Easy: 12,
-          Medium: 24,
-          Hard: 36,
+          Medium: 18,
+          Hard: 24,
         };
         let blockLimit = blockLimitBasedOnDifficulty[difficulty];
 
