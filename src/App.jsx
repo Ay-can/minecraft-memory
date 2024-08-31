@@ -21,11 +21,20 @@ function App() {
 
   const handleDifficultyClick = (e) => {
     setGameMode("");
+    setGameStatus("Playing");
     setDifficulty(e.target.innerText);
   };
 
   const handleStatusChange = (newStatus) => {
     setGameStatus(newStatus);
+  };
+
+  const handleDifficulty = (difficulty) => {
+    setDifficulty(difficulty);
+  };
+
+  const handleGameModeChange = (newGameMode) => {
+    setGameMode(newGameMode);
   };
 
   //set Background music
@@ -45,6 +54,13 @@ function App() {
         <DifficultyScreen handleDifficultyClick={handleDifficultyClick} />
       </>
     );
+  } else if (gameMode === "Titlescreen") {
+    return (
+      <>
+        <Background />
+        <TitleScreen handleTitleScreenClick={handleTitleScreenClick} />
+      </>
+    );
   }
 
   if (difficulty === "Easy") {
@@ -55,6 +71,8 @@ function App() {
           gameStatus={gameStatus}
           difficulty={difficulty}
           handleStatusChange={handleStatusChange}
+          handleDifficulty={handleDifficulty}
+          handleGameModeChange={handleGameModeChange}
         />
       </>
     );
@@ -66,6 +84,8 @@ function App() {
           gameStatus={gameStatus}
           difficulty={difficulty}
           handleStatusChange={handleStatusChange}
+          handleDifficulty={handleDifficulty}
+          handleGameModeChange={handleGameModeChange}
         />
       </>
     );
@@ -77,6 +97,8 @@ function App() {
           gameStatus={gameStatus}
           difficulty={difficulty}
           handleStatusChange={handleStatusChange}
+          handleDifficulty={handleDifficulty}
+          handleGameModeChange={handleGameModeChange}
         />
       </>
     );

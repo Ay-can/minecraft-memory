@@ -10,6 +10,8 @@ export default function GameBoard({
   gameStatus,
   difficulty,
   handleStatusChange,
+  handleDifficulty,
+  handleGameModeChange,
 }) {
   const [minecraftItems, setMinecraftItems] = useState([]);
   const clickedItems = useRef([]);
@@ -90,7 +92,14 @@ export default function GameBoard({
   } else {
     return (
       <>
-        <GameOver handleStatusChange={handleStatusChange} />;
+        <GameOver
+          gameStatus={gameStatus}
+          handleStatusChange={handleStatusChange}
+          difficulty={difficulty}
+          handleDifficulty={handleDifficulty}
+          handleGameModeChange={handleGameModeChange}
+        />
+        ;
       </>
     );
   }
