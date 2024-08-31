@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import GameCard from "./GameCard";
 import GameOver from "./GameOver";
@@ -12,17 +12,19 @@ export default function GameBoard({
   handleStatusChange,
 }) {
   const [minecraftItems, setMinecraftItems] = useState([]);
-  const clickedItems = [];
+  const clickedItems = useRef([]);
 
   const handleClick = (name) => {
-    const hasAlreadyBeenClicked = clickedItems.includes(name);
+    const hasAlreadyBeenClicked = clickedItems.current.includes(name);
     if (hasAlreadyBeenClicked) {
       handleStatusChange("Game Over");
     } else {
-      clickedItems.push(name);
+      clickedItems.current.push(name);
+      setMinecraftItems(durstenFeldShuffle(minecraftItems));
     }
   };
 
+  // Shuffle items each round
   const durstenFeldShuffle = (arr) => {
     const newArr = arr.slice();
     for (let i = newArr.length - 1; i > 0; i--) {
@@ -35,13 +37,33 @@ export default function GameBoard({
   };
 
   useEffect(() => {
-    // fetch minecraft blocks
-    fetch("https://minecraft-api.vercel.app/api/blocks?limit=200", {
+    // fetch 200 minecraft blocks
+    fetch(`https://minecraft-api.vercel.app/api/blocks`, {
       mode: "cors",
     })
       .then((response) => response.json())
-      .then((response) => setMinecraftItems(durstenFeldShuffle(response)));
-  }, []);
+      .then((response) => {
+        //slice the amount of items based on difficulty
+        const blockLimitBasedOnDifficulty = {
+          Easy: 12,
+          Medium: 24,
+          Hard: 36,
+        };
+        let blockLimit = blockLimitBasedOnDifficulty[difficulty];
+
+        // Remove banners from items, sadly the api is basic and I can't filter it out when doing
+        // a get request, not very efficient ;(
+        let filteredArr = response.filter(
+          (item) => !item.name.includes("Banner")
+        );
+
+        // shuffle the the 200 fetched items and slice them based on difficulty
+        let shuffledArr = durstenFeldShuffle(filteredArr);
+        let slicedArr = shuffledArr.slice(0, blockLimit);
+
+        setMinecraftItems(slicedArr);
+      });
+  }, [difficulty]);
 
   if (gameStatus !== "Game Over") {
     return (
@@ -58,6 +80,7 @@ export default function GameBoard({
                 name={minecrafItem.name}
                 img={minecrafItem.image}
                 handleClick={handleClick}
+                difficulty={difficulty}
               />
             );
           })}
