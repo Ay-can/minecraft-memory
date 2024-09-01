@@ -1,5 +1,6 @@
 .card {
   position: relative;
+  cursor: pointer;
 }
 
 /*
@@ -12,7 +13,7 @@ img.medium {
 }
 
 img.hard {
-  width: 40%;
+  width: 30%;
 }
 
 .card p {

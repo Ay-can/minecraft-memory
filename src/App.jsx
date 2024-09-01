@@ -14,6 +14,8 @@ function App() {
   const [gameStatus, setGameStatus] = useState("Not Playing");
   const [difficulty, setDifficulty] = useState("");
   const [bgMusic, { stop }] = useSound(mogCity, { volume: "0.1" });
+  const [currentScore, setCurrentScore] = useState(0);
+  const [currentHighScore, setCurrentHighscore] = useState(0);
 
   const handleTitleScreenClick = (e) => {
     setGameMode(e.target.innerText);
@@ -23,6 +25,7 @@ function App() {
     setGameMode("");
     setGameStatus("Playing");
     setDifficulty(e.target.innerText);
+    setCurrentScore(0);
   };
 
   const handleStatusChange = (newStatus) => {
@@ -35,6 +38,14 @@ function App() {
 
   const handleGameModeChange = (newGameMode) => {
     setGameMode(newGameMode);
+  };
+
+  const handleScore = (score) => {
+    setCurrentScore(score);
+  };
+
+  const handleHighScore = (highscore) => {
+    setCurrentHighscore(highscore);
   };
 
   //set Background music
@@ -73,6 +84,10 @@ function App() {
           handleStatusChange={handleStatusChange}
           handleDifficulty={handleDifficulty}
           handleGameModeChange={handleGameModeChange}
+          handleScore={handleScore}
+          handleHighScore={handleHighScore}
+          currentScore={currentScore}
+          currentHighScore={currentHighScore}
         />
       </>
     );
@@ -86,6 +101,10 @@ function App() {
           handleStatusChange={handleStatusChange}
           handleDifficulty={handleDifficulty}
           handleGameModeChange={handleGameModeChange}
+          handleScore={handleScore}
+          handleHighScore={handleHighScore}
+          currentScore={currentScore}
+          currentHighScore={currentHighScore}
         />
       </>
     );
@@ -99,6 +118,10 @@ function App() {
           handleStatusChange={handleStatusChange}
           handleDifficulty={handleDifficulty}
           handleGameModeChange={handleGameModeChange}
+          handleScore={handleScore}
+          handleHighScore={handleHighScore}
+          currentScore={currentScore}
+          currentHighScore={currentHighScore}
         />
       </>
     );

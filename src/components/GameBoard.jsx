@@ -5,13 +5,17 @@ import GameOver from "./GameOver";
 import SplashText from "./SplashText";
 
 import "../styles/gameboard.css";
+import ScoreBoard from "./ScoreBoard";
 
 export default function GameBoard({
   gameStatus,
   difficulty,
   handleStatusChange,
-  handleDifficulty,
   handleGameModeChange,
+  handleScore,
+  handleHighScore,
+  currentScore,
+  currentHighScore,
 }) {
   const [minecraftItems, setMinecraftItems] = useState([]);
   const clickedItems = useRef([]);
@@ -20,8 +24,12 @@ export default function GameBoard({
     const hasAlreadyBeenClicked = clickedItems.current.includes(name);
     if (hasAlreadyBeenClicked) {
       handleStatusChange("Game Over");
+      if (currentScore > currentHighScore) {
+        handleHighScore(currentScore);
+      }
     } else {
       clickedItems.current.push(name);
+      handleScore(currentScore + 1);
       setMinecraftItems(durstenFeldShuffle(minecraftItems));
     }
   };
@@ -70,6 +78,12 @@ export default function GameBoard({
   if (gameStatus !== "Game Over") {
     return (
       <>
+        <div className="score-board">
+          <ScoreBoard
+            currentScore={currentScore}
+            currentHighScore={currentHighScore}
+          />
+        </div>
         <div className="difficulty-splash-container">
           <SplashText customText="The rules are simple" />
           <SplashText customText="Don't click on the same card twice!" />
@@ -93,11 +107,9 @@ export default function GameBoard({
     return (
       <>
         <GameOver
-          gameStatus={gameStatus}
-          handleStatusChange={handleStatusChange}
-          difficulty={difficulty}
-          handleDifficulty={handleDifficulty}
           handleGameModeChange={handleGameModeChange}
+          currentScore={currentScore}
+          currentHighScore={currentHighScore}
         />
         ;
       </>

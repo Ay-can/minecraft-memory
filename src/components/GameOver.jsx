@@ -1,17 +1,21 @@
 import SplashText from "./SplashText";
 import Button from "./Button";
 
+import ScoreBoard from "./ScoreBoard";
+
 export default function GameOver({
-  gameStatus,
-  handleStatusChange,
-  difficulty,
-  handleDifficulty,
+  currentScore,
+  currentHighScore,
   handleGameModeChange,
 }) {
   return (
     <>
       <div className="game-over-container">
         <SplashText customText="Game Over :(" />
+        <ScoreBoard
+          currentScore={currentScore}
+          currentHighScore={currentHighScore}
+        />
         <Button
           btnText="Try Again?"
           handleClick={() => handleGameModeChange("Singleplayer")}

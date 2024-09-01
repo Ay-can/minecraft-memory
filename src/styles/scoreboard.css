@@ -1,0 +1,9 @@
+.score-board-container {
+  position: relative;
+}
+
+.score-board-container > * {
+  color: #ffffff;
+  font-size: 0.9rem;
+  user-select: none;
+}

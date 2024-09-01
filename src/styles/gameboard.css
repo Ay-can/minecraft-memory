@@ -6,8 +6,7 @@
   justify-content: center;
   align-items: center;
   margin-bottom: 200px;
-  padding: 90px;
-  padding-top: 0;
+  padding: 40px;
   gap: 32px;
 }
 
@@ -18,4 +17,16 @@
   align-items: center;
   height: 100vh;
   row-gap: 16px;
+}
+
+.score-board {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  padding: 8px 32px;
+  margin: 0;
+}
+
+.difficulty-splash-container > * {
+  margin: 8px;
 }
