@@ -15,16 +15,13 @@ export default function TitleScreen({ handleTitleScreenClick }) {
         </div>
         <div className="big-buttons">
           <Button btnText="Singleplayer" handleClick={handleTitleScreenClick} />
-          <Button btnText="Multiplayer" handleClick={handleTitleScreenClick} />
-          <Button
-            btnText="Minecraft Realms"
-            handleClick={handleTitleScreenClick}
-          />
+          <Button btnText="Multiplayer" />
+          <Button btnText="Minecraft Realms" />
         </div>
 
         <div className="small-buttons">
-          <Button btnText="Options" handleClick={handleTitleScreenClick} />
-          <Button btnText="Quit Game" handleClick={handleTitleScreenClick} />
+          <Button btnText="Options" />
+          <Button btnText="Quit Game" />
         </div>
         <Footer />
       </div>

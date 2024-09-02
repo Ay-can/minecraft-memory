@@ -31,6 +31,7 @@ export default function GameBoard({
       checkNewHighScore(currentScore, currentHighScore);
     } else if (currentRound === minecraftItems.length) {
       handleStatusChange("Won");
+
       checkNewHighScore(currentScore, currentHighScore);
     } else {
       setCurrentRound(currentRound + 1);
@@ -122,6 +123,7 @@ export default function GameBoard({
           currentScore={currentScore}
           currentHighScore={currentHighScore}
           handleGameModeChange={handleGameModeChange}
+          handleStatusChange={handleStatusChange}
         />
       </>
     );
@@ -132,6 +134,7 @@ export default function GameBoard({
           handleGameModeChange={handleGameModeChange}
           currentScore={currentScore}
           currentHighScore={currentHighScore}
+          handleStatusChange={handleStatusChange}
         />
         ;
       </>

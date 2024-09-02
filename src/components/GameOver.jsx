@@ -6,6 +6,7 @@ import ScoreBoard from "./ScoreBoard";
 export default function GameOver({
   currentScore,
   currentHighScore,
+  handleStatusChange,
   handleGameModeChange,
 }) {
   return (
@@ -18,11 +19,17 @@ export default function GameOver({
         />
         <Button
           btnText="Try Again?"
-          handleClick={() => handleGameModeChange("Singleplayer")}
+          handleClick={() => {
+            handleStatusChange("Playing");
+            handleGameModeChange("Singleplayer");
+          }}
         ></Button>
         <Button
           btnText="Quit"
-          handleClick={() => handleGameModeChange("Titlescreen")}
+          handleClick={() => {
+            handleStatusChange("Not Playing");
+            handleGameModeChange("Titlescreen");
+          }}
         ></Button>
       </div>
     </>
