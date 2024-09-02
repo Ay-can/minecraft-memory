@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 
 import GameCard from "./GameCard";
 import GameOver from "./GameOver";
+import GameRound from "./GameRound";
 import SplashText from "./SplashText";
 
 import "../styles/gameboard.css";
@@ -19,6 +20,7 @@ export default function GameBoard({
 }) {
   const [minecraftItems, setMinecraftItems] = useState([]);
   const clickedItems = useRef([]);
+  const [currentRound, setCurrentRound] = useState(0);
 
   const handleClick = (name) => {
     const hasAlreadyBeenClicked = clickedItems.current.includes(name);
@@ -27,7 +29,10 @@ export default function GameBoard({
       if (currentScore > currentHighScore) {
         handleHighScore(currentScore);
       }
+    } else if (currentRound === clickedItems.current.length) {
+      console.log("Winner chicken dinner");
     } else {
+      setCurrentRound(currentRound + 1);
       clickedItems.current.push(name);
       handleScore(currentScore + 1);
       setMinecraftItems(durstenFeldShuffle(minecraftItems));
@@ -78,10 +83,16 @@ export default function GameBoard({
   if (gameStatus !== "Game Over") {
     return (
       <>
-        <div className="score-board">
-          <ScoreBoard
-            currentScore={currentScore}
-            currentHighScore={currentHighScore}
+        <div className="score-and-round-container">
+          <div className="score-board">
+            <ScoreBoard
+              currentScore={currentScore}
+              currentHighScore={currentHighScore}
+            />
+          </div>
+          <GameRound
+            currentRound={currentRound}
+            totalRounds={minecraftItems.length}
           />
         </div>
         <div className="difficulty-splash-container">

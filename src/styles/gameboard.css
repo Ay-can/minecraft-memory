@@ -27,6 +27,16 @@
   margin: 0;
 }
 
+.score-board-container > * {
+  margin: 6px;
+}
+
 .difficulty-splash-container > * {
   margin: 8px;
+}
+
+.score-and-round-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

@@ -1,0 +1,8 @@
+.game-round-container {
+  position: relative;
+  padding: 32px;
+}
+
+.game-round-container > * {
+  color: var(--credit-text-yellow);
+}

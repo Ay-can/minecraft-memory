@@ -17,5 +17,6 @@ img.hard {
 }
 
 .card p {
+  color: var(--credit-text-yellow);
   margin: 0;
 }
