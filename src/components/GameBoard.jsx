@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 
 import GameCard from "./GameCard";
 import GameOver from "./GameOver";
+import GameWon from "./GameWon";
 import GameRound from "./GameRound";
 import SplashText from "./SplashText";
 
@@ -17,20 +18,20 @@ export default function GameBoard({
   handleHighScore,
   currentScore,
   currentHighScore,
+  checkNewHighScore,
 }) {
   const [minecraftItems, setMinecraftItems] = useState([]);
   const clickedItems = useRef([]);
-  const [currentRound, setCurrentRound] = useState(0);
+  const [currentRound, setCurrentRound] = useState(1);
 
   const handleClick = (name) => {
     const hasAlreadyBeenClicked = clickedItems.current.includes(name);
     if (hasAlreadyBeenClicked) {
       handleStatusChange("Game Over");
-      if (currentScore > currentHighScore) {
-        handleHighScore(currentScore);
-      }
-    } else if (currentRound === clickedItems.current.length) {
-      console.log("Winner chicken dinner");
+      checkNewHighScore(currentScore, currentHighScore);
+    } else if (currentRound === minecraftItems.length) {
+      handleStatusChange("Won");
+      checkNewHighScore(currentScore, currentHighScore);
     } else {
       setCurrentRound(currentRound + 1);
       clickedItems.current.push(name);
@@ -80,7 +81,7 @@ export default function GameBoard({
       });
   }, [difficulty]);
 
-  if (gameStatus !== "Game Over") {
+  if (gameStatus === "Playing") {
     return (
       <>
         <div className="score-and-round-container">
@@ -112,6 +113,16 @@ export default function GameBoard({
             );
           })}
         </div>
+      </>
+    );
+  } else if (gameStatus === "Won") {
+    return (
+      <>
+        <GameWon
+          currentScore={currentScore}
+          currentHighScore={currentHighScore}
+          handleGameModeChange={handleGameModeChange}
+        />
       </>
     );
   } else {

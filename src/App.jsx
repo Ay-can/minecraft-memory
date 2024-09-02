@@ -48,6 +48,12 @@ function App() {
     setCurrentHighscore(highscore);
   };
 
+  const checkNewHighScore = (currentScore, highScore) => {
+    if (currentScore > highScore) {
+      handleHighScore(currentScore);
+    }
+  };
+
   //set Background music
   useEffect(() => {
     const key = bgMusic();
@@ -88,6 +94,7 @@ function App() {
           handleHighScore={handleHighScore}
           currentScore={currentScore}
           currentHighScore={currentHighScore}
+          checkNewHighScore={checkNewHighScore}
         />
       </>
     );
@@ -105,6 +112,7 @@ function App() {
           handleHighScore={handleHighScore}
           currentScore={currentScore}
           currentHighScore={currentHighScore}
+          checkNewHighScore={checkNewHighScore}
         />
       </>
     );
@@ -122,6 +130,7 @@ function App() {
           handleHighScore={handleHighScore}
           currentScore={currentScore}
           currentHighScore={currentHighScore}
+          checkNewHighScore={checkNewHighScore}
         />
       </>
     );
