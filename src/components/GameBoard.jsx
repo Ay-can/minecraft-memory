@@ -24,7 +24,7 @@ export default function GameBoard({
   const clickedItems = useRef([]);
   const [currentRound, setCurrentRound] = useState(1);
 
-  const handleClick = (name) => {
+  const handleCardClick = (name) => {
     const hasAlreadyBeenClicked = clickedItems.current.includes(name);
     if (hasAlreadyBeenClicked) {
       handleStatusChange("Game Over");
@@ -108,7 +108,7 @@ export default function GameBoard({
                 key={minecrafItem.namespacedId}
                 name={minecrafItem.name}
                 img={minecrafItem.image}
-                handleClick={handleClick}
+                handleCardClick={handleCardClick}
                 difficulty={difficulty}
               />
             );

@@ -1,7 +1,10 @@
 import SplashText from "./SplashText";
 import Button from "./Button";
-
 import ScoreBoard from "./ScoreBoard";
+
+import { hurtSound } from "../assets/sound/sounds";
+import useSound from "use-sound";
+import { useEffect } from "react";
 
 export default function GameOver({
   currentScore,
@@ -9,6 +12,10 @@ export default function GameOver({
   handleStatusChange,
   handleGameModeChange,
 }) {
+  const [gameOverSound] = useSound(hurtSound, { volume: 0.1 });
+
+  useEffect(() => gameOverSound(), [gameOverSound]);
+
   return (
     <>
       <div className="game-over-container">

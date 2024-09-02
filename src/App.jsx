@@ -18,6 +18,7 @@ function App() {
   const [currentHighScore, setCurrentHighscore] = useState(0);
 
   const handleTitleScreenClick = (e) => {
+    setDifficulty("");
     setGameMode(e.target.innerText);
   };
 
@@ -56,10 +57,9 @@ function App() {
 
   //set Background music
   useEffect(() => {
-    const key = bgMusic();
+    bgMusic();
 
     return () => {
-      clearInterval(key);
       stop();
     };
   }, [bgMusic, stop]);
