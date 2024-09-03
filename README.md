@@ -4,6 +4,11 @@ A memory game where you test your memory, the goal is to complete the level with
 
 It was a fun project to learn more about useState, useEffect and useRef(React).
 
+
+https://github.com/user-attachments/assets/8b7cce56-3256-42ec-9e20-4bed3dbcd478
+
+
+
 ## Inspiration/Resources
 
 I wanted to make it look like the minecraft homescreen so I used a couple of resources.
