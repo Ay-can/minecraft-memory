@@ -8,8 +8,12 @@ Change size of individual images
 based on difficulty
 */
 
-img.medium {
+img.easy {
   width: 60%;
+}
+
+img.medium {
+  width: 50%;
 }
 
 img.hard {
