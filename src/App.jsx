@@ -10,7 +10,7 @@ import useSound from "use-sound";
 import DifficultyScreen from "./components/DifficultyScreen";
 
 function App() {
-  const [gameMode, setGameMode] = useState("");
+  const [gameMode, setGameMode] = useState("Titlescreen");
   const [difficulty, setDifficulty] = useState("");
   const [bgMusic, { stop }] = useSound(mogCity, { volume: "0.1" });
   const [currentScore, setCurrentScore] = useState(0);
@@ -32,6 +32,7 @@ function App() {
   };
 
   const handleGameModeChange = (newGameMode) => {
+    setDifficulty("");
     setGameMode(newGameMode);
   };
 
@@ -58,55 +59,7 @@ function App() {
     };
   }, [bgMusic, stop]);
 
-  if (gameMode === "Singleplayer") {
-    return (
-      <>
-        <Background />
-        <DifficultyScreen handleDifficultyClick={handleDifficultyClick} />
-      </>
-    );
-  } else if (gameMode === "Titlescreen") {
-    return (
-      <>
-        <Background />
-        <TitleScreen handleTitleScreenClick={handleTitleScreenClick} />
-      </>
-    );
-  }
-
-  if (difficulty === "Easy") {
-    return (
-      <>
-        <Background />
-        <GameBoard
-          difficulty={difficulty}
-          handleDifficulty={handleDifficulty}
-          handleGameModeChange={handleGameModeChange}
-          handleScore={handleScore}
-          handleHighScore={handleHighScore}
-          currentScore={currentScore}
-          currentHighScore={currentHighScore}
-          checkNewHighScore={checkNewHighScore}
-        />
-      </>
-    );
-  } else if (difficulty === "Medium") {
-    return (
-      <>
-        <Background />
-        <GameBoard
-          difficulty={difficulty}
-          handleDifficulty={handleDifficulty}
-          handleGameModeChange={handleGameModeChange}
-          handleScore={handleScore}
-          handleHighScore={handleHighScore}
-          currentScore={currentScore}
-          currentHighScore={currentHighScore}
-          checkNewHighScore={checkNewHighScore}
-        />
-      </>
-    );
-  } else if (difficulty === "Hard") {
+  if (difficulty) {
     return (
       <>
         <Background />
@@ -127,7 +80,11 @@ function App() {
   return (
     <>
       <Background />
-      <TitleScreen handleTitleScreenClick={handleTitleScreenClick} />
+      {gameMode === "Titlescreen" ? (
+        <TitleScreen handleTitleScreenClick={handleTitleScreenClick} />
+      ) : (
+        <DifficultyScreen handleDifficultyClick={handleDifficultyClick} />
+      )}
     </>
   );
 }

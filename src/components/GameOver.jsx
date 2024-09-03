@@ -27,15 +27,11 @@ export default function GameOver({
         />
         <Button
           btnText="Try Again?"
-          handleClick={() => {
-            handleGameModeChange("Singleplayer");
-          }}
+          handleClick={() => handleGameModeChange("")}
         ></Button>
         <Button
           btnText="Quit"
-          handleClick={() => {
-            handleGameModeChange("Titlescreen");
-          }}
+          handleClick={() => handleGameModeChange("Titlescreen")}
         ></Button>
       </div>
     </>

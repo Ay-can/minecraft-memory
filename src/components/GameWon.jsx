@@ -20,7 +20,7 @@ export default function GameWon({
         <Button
           btnText="Try Again?"
           handleClick={() => {
-            handleGameModeChange("Singleplayer");
+            handleGameModeChange("");
           }}
         ></Button>
         <Button
