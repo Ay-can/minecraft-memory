@@ -113,25 +113,23 @@ export default function GameBoard({
         </div>
       </>
     );
-  } else if (gameStatus === "Won") {
-    return (
-      <>
+  }
+
+  return (
+    <>
+      {gameStatus === "Won" ? (
         <GameWon
           currentScore={currentScore}
           currentHighScore={currentHighScore}
           handleGameModeChange={handleGameModeChange}
         />
-      </>
-    );
-  } else {
-    return (
-      <>
+      ) : (
         <GameOver
           handleGameModeChange={handleGameModeChange}
           currentScore={currentScore}
           currentHighScore={currentHighScore}
         />
-      </>
-    );
-  }
+      )}
+    </>
+  );
 }
