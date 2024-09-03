@@ -10,43 +10,54 @@ import useSound from "use-sound";
 import DifficultyScreen from "./components/DifficultyScreen";
 
 function App() {
-  const [gameMode, setGameMode] = useState("Titlescreen");
-  const [difficulty, setDifficulty] = useState("");
+  const [gameSettings, setGameSettings] = useState({
+    gameMode: "Titlescreen",
+    difficulty: "",
+    currentScore: 0,
+    currentHighScore: 0,
+  });
   const [bgMusic, { stop }] = useSound(mogCity, { volume: "0.1" });
-  const [currentScore, setCurrentScore] = useState(0);
-  const [currentHighScore, setCurrentHighscore] = useState(0);
 
   const handleTitleScreenClick = (e) => {
-    setDifficulty("");
-    setGameMode(e.target.innerText);
+    setGameSettings({
+      ...gameSettings,
+      difficulty: "",
+      gameMode: e.target.innerText,
+    });
   };
 
   const handleDifficultyClick = (e) => {
-    setGameMode("");
-    setDifficulty(e.target.innerText);
-    setCurrentScore(0);
+    setGameSettings({
+      ...gameSettings,
+      difficulty: e.target.innerText,
+      gameMode: "",
+      currentScore: 0,
+    });
   };
 
   const handleDifficulty = (difficulty) => {
-    setDifficulty(difficulty);
+    setGameSettings({ ...gameSettings, difficulty });
   };
 
-  const handleGameModeChange = (newGameMode) => {
-    setDifficulty("");
-    setGameMode(newGameMode);
+  const handleGameModeChange = (gameMode) => {
+    setGameSettings({ ...gameSettings, difficulty: "", gameMode });
   };
 
-  const handleScore = (score) => {
-    setCurrentScore(score);
+  const handleScore = () => {
+    setGameSettings((prevSettings) => {
+      return { ...prevSettings, currentScore: prevSettings.currentScore + 1 };
+    });
   };
 
-  const handleHighScore = (highscore) => {
-    setCurrentHighscore(highscore);
+  const handleHighScore = (currentHighScore) => {
+    setGameSettings((prevSettings) => {
+      return { ...prevSettings, currentHighScore };
+    });
   };
 
-  const checkNewHighScore = (currentScore, highScore) => {
-    if (currentScore > highScore) {
-      handleHighScore(currentScore);
+  const checkIfHighscore = () => {
+    if (gameSettings.currentScore > gameSettings.currentHighScore) {
+      handleHighScore(gameSettings.currentScore);
     }
   };
 
@@ -59,19 +70,17 @@ function App() {
     };
   }, [bgMusic, stop]);
 
-  if (difficulty) {
+  if (gameSettings.difficulty) {
     return (
       <>
         <Background />
         <GameBoard
-          difficulty={difficulty}
+          gameSettings={gameSettings}
           handleDifficulty={handleDifficulty}
           handleGameModeChange={handleGameModeChange}
-          handleScore={handleScore}
-          handleHighScore={handleHighScore}
-          currentScore={currentScore}
-          currentHighScore={currentHighScore}
-          checkNewHighScore={checkNewHighScore}
+          updateScore={handleScore}
+          updateHighScore={handleHighScore}
+          checkIfHighscore={checkIfHighscore}
         />
       </>
     );
@@ -80,7 +89,7 @@ function App() {
   return (
     <>
       <Background />
-      {gameMode === "Titlescreen" ? (
+      {gameSettings.gameMode === "Titlescreen" ? (
         <TitleScreen handleTitleScreenClick={handleTitleScreenClick} />
       ) : (
         <DifficultyScreen handleDifficultyClick={handleDifficultyClick} />

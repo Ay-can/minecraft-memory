@@ -10,12 +10,10 @@ import "../styles/gameboard.css";
 import ScoreBoard from "./ScoreBoard";
 
 export default function GameBoard({
-  difficulty,
+  gameSettings,
   handleGameModeChange,
-  handleScore,
-  currentScore,
-  currentHighScore,
-  checkNewHighScore,
+  updateScore,
+  checkIfHighscore,
 }) {
   const [minecraftItems, setMinecraftItems] = useState([]);
   const clickedItems = useRef([]);
@@ -26,14 +24,14 @@ export default function GameBoard({
     const hasAlreadyBeenClicked = clickedItems.current.includes(name);
     if (hasAlreadyBeenClicked) {
       setGameStatus("Game Over");
-      checkNewHighScore(currentScore, currentHighScore);
+      checkIfHighscore();
     } else if (currentRound === minecraftItems.length) {
       setGameStatus("Won");
-      checkNewHighScore(currentScore, currentHighScore);
+      checkIfHighscore();
     } else {
       setCurrentRound(currentRound + 1);
       clickedItems.current.push(name);
-      handleScore(currentScore + 1);
+      updateScore();
       setMinecraftItems(durstenFeldShuffle(minecraftItems));
     }
   };
@@ -63,7 +61,7 @@ export default function GameBoard({
           Medium: 18,
           Hard: 24,
         };
-        let blockLimit = blockLimitBasedOnDifficulty[difficulty];
+        let blockLimit = blockLimitBasedOnDifficulty[gameSettings.difficulty];
 
         // Remove banners from items, sadly the api is basic and I can't filter it out when doing
         // a get request, not very efficient ;(
@@ -77,17 +75,14 @@ export default function GameBoard({
 
         setMinecraftItems(slicedArr);
       });
-  }, [difficulty]);
+  }, [gameSettings.difficulty]);
 
   if (gameStatus === "Playing") {
     return (
       <>
         <div className="score-and-round-container">
           <div className="score-board">
-            <ScoreBoard
-              currentScore={currentScore}
-              currentHighScore={currentHighScore}
-            />
+            <ScoreBoard gameSettings={gameSettings} />
           </div>
           <GameRound
             currentRound={currentRound}
@@ -106,7 +101,7 @@ export default function GameBoard({
                 name={minecrafItem.name}
                 img={minecrafItem.image}
                 handleCardClick={handleCardClick}
-                difficulty={difficulty}
+                gameSettings={gameSettings}
               />
             );
           })}
@@ -119,15 +114,13 @@ export default function GameBoard({
     <>
       {gameStatus === "Won" ? (
         <GameWon
-          currentScore={currentScore}
-          currentHighScore={currentHighScore}
+          gameSettings={gameSettings}
           handleGameModeChange={handleGameModeChange}
         />
       ) : (
         <GameOver
+          gameSettings={gameSettings}
           handleGameModeChange={handleGameModeChange}
-          currentScore={currentScore}
-          currentHighScore={currentHighScore}
         />
       )}
     </>

@@ -4,19 +4,12 @@ import Button from "./Button";
 
 import "../styles/gamewon.css";
 
-export default function GameWon({
-  currentScore,
-  currentHighScore,
-  handleGameModeChange,
-}) {
+export default function GameWon({ gameSettings, handleGameModeChange }) {
   return (
     <>
       <div className="game-won-container">
         <SplashText customText="Congrationlations!!!" />
-        <ScoreBoard
-          currentScore={currentScore}
-          currentHighScore={currentHighScore}
-        />
+        <ScoreBoard gameSettings={gameSettings} />
         <Button
           btnText="Try Again?"
           handleClick={() => {

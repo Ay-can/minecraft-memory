@@ -1,13 +1,17 @@
 import "../styles/gamecard.css";
 
-export default function GameCard({ name, img, handleCardClick, difficulty }) {
+export default function GameCard({ name, img, handleCardClick, gameSettings }) {
   // resize cards based on difficulty
 
   return (
     <>
       <div className="card" onClick={() => handleCardClick(name)}>
         <p>{name}</p>
-        <img className={difficulty.toLowerCase()} src={img} alt="" />
+        <img
+          className={gameSettings.difficulty.toLowerCase()}
+          src={img}
+          alt=""
+        />
       </div>
     </>
   );
