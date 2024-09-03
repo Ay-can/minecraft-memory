@@ -1,8 +1,14 @@
-# React + Vite
+# Minecraft Memory Game
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A memory game where you test your memory, the goal is to complete the level without clicking on the same item twice. Hard mode is quite difficult ;)
 
-Currently, two official plugins are available:
+It was a fun project to learn more about useState, useEffect and useRef(React).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Inspiration/Resources
+
+I wanted to make it look like the minecraft homescreen so I used a couple of resources.
+
+- Minecraft Homescreen -> I just opened the game lol.
+- https://minecraft.wiki/ -> For textures/sounds/look of buttons.
+- https://codepen.io/SimonDiligues/pen/gObEyym -> A cool title screen made in pure css.
+- https://motionbgs.com/tag:minecraft/ -> I got the backgrounds from this website.

@@ -13,7 +13,7 @@ export default function GameWon({ gameSettings, handleGameModeChange }) {
   useEffect(() => {
     levelUpSound();
     return () => stop();
-  }, []);
+  }, [levelUpSound]);
 
   return (
     <>
