@@ -11,7 +11,6 @@ import DifficultyScreen from "./components/DifficultyScreen";
 
 function App() {
   const [gameMode, setGameMode] = useState("");
-  const [gameStatus, setGameStatus] = useState("Not Playing");
   const [difficulty, setDifficulty] = useState("");
   const [bgMusic, { stop }] = useSound(mogCity, { volume: "0.1" });
   const [currentScore, setCurrentScore] = useState(0);
@@ -24,13 +23,8 @@ function App() {
 
   const handleDifficultyClick = (e) => {
     setGameMode("");
-    setGameStatus("Playing");
     setDifficulty(e.target.innerText);
     setCurrentScore(0);
-  };
-
-  const handleStatusChange = (newStatus) => {
-    setGameStatus(newStatus);
   };
 
   const handleDifficulty = (difficulty) => {
@@ -85,9 +79,7 @@ function App() {
       <>
         <Background />
         <GameBoard
-          gameStatus={gameStatus}
           difficulty={difficulty}
-          handleStatusChange={handleStatusChange}
           handleDifficulty={handleDifficulty}
           handleGameModeChange={handleGameModeChange}
           handleScore={handleScore}
@@ -103,9 +95,7 @@ function App() {
       <>
         <Background />
         <GameBoard
-          gameStatus={gameStatus}
           difficulty={difficulty}
-          handleStatusChange={handleStatusChange}
           handleDifficulty={handleDifficulty}
           handleGameModeChange={handleGameModeChange}
           handleScore={handleScore}
@@ -121,9 +111,7 @@ function App() {
       <>
         <Background />
         <GameBoard
-          gameStatus={gameStatus}
           difficulty={difficulty}
-          handleStatusChange={handleStatusChange}
           handleDifficulty={handleDifficulty}
           handleGameModeChange={handleGameModeChange}
           handleScore={handleScore}

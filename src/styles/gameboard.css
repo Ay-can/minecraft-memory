@@ -10,15 +10,6 @@
   gap: 32px;
 }
 
-.game-over-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  row-gap: 16px;
-}
-
 .score-board {
   position: relative;
   display: flex;

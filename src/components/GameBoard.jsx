@@ -10,12 +10,9 @@ import "../styles/gameboard.css";
 import ScoreBoard from "./ScoreBoard";
 
 export default function GameBoard({
-  gameStatus,
   difficulty,
-  handleStatusChange,
   handleGameModeChange,
   handleScore,
-  handleHighScore,
   currentScore,
   currentHighScore,
   checkNewHighScore,
@@ -23,15 +20,15 @@ export default function GameBoard({
   const [minecraftItems, setMinecraftItems] = useState([]);
   const clickedItems = useRef([]);
   const [currentRound, setCurrentRound] = useState(1);
+  const [gameStatus, setGameStatus] = useState("Playing");
 
   const handleCardClick = (name) => {
     const hasAlreadyBeenClicked = clickedItems.current.includes(name);
     if (hasAlreadyBeenClicked) {
-      handleStatusChange("Game Over");
+      setGameStatus("Game Over");
       checkNewHighScore(currentScore, currentHighScore);
     } else if (currentRound === minecraftItems.length) {
-      handleStatusChange("Won");
-
+      setGameStatus("Won");
       checkNewHighScore(currentScore, currentHighScore);
     } else {
       setCurrentRound(currentRound + 1);
@@ -123,7 +120,6 @@ export default function GameBoard({
           currentScore={currentScore}
           currentHighScore={currentHighScore}
           handleGameModeChange={handleGameModeChange}
-          handleStatusChange={handleStatusChange}
         />
       </>
     );
@@ -134,9 +130,7 @@ export default function GameBoard({
           handleGameModeChange={handleGameModeChange}
           currentScore={currentScore}
           currentHighScore={currentHighScore}
-          handleStatusChange={handleStatusChange}
         />
-        ;
       </>
     );
   }

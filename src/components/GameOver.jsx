@@ -6,10 +6,11 @@ import { hurtSound } from "../assets/sound/sounds";
 import useSound from "use-sound";
 import { useEffect } from "react";
 
+import "../styles/gameover.css";
+
 export default function GameOver({
   currentScore,
   currentHighScore,
-  handleStatusChange,
   handleGameModeChange,
 }) {
   const [gameOverSound] = useSound(hurtSound, { volume: 0.1 });
@@ -27,14 +28,12 @@ export default function GameOver({
         <Button
           btnText="Try Again?"
           handleClick={() => {
-            handleStatusChange("Playing");
             handleGameModeChange("Singleplayer");
           }}
         ></Button>
         <Button
           btnText="Quit"
           handleClick={() => {
-            handleStatusChange("Not Playing");
             handleGameModeChange("Titlescreen");
           }}
         ></Button>

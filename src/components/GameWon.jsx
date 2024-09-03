@@ -7,7 +7,6 @@ import "../styles/gamewon.css";
 export default function GameWon({
   currentScore,
   currentHighScore,
-  handleStatusChange,
   handleGameModeChange,
 }) {
   return (
@@ -21,14 +20,12 @@ export default function GameWon({
         <Button
           btnText="Try Again?"
           handleClick={() => {
-            handleStatusChange("Playing");
             handleGameModeChange("Singleplayer");
           }}
         ></Button>
         <Button
           btnText="Quit"
           handleClick={() => {
-            handleStatusChange("Not Playing");
             handleGameModeChange("Titlescreen");
           }}
         ></Button>
