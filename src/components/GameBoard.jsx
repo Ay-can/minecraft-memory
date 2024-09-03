@@ -8,6 +8,9 @@ import SplashText from "./SplashText";
 
 import "../styles/gameboard.css";
 import ScoreBoard from "./ScoreBoard";
+import useSound from "use-sound";
+
+import { grassDig } from "../assets/sound/sounds";
 
 export default function GameBoard({
   gameSettings,
@@ -19,8 +22,10 @@ export default function GameBoard({
   const clickedItems = useRef([]);
   const [currentRound, setCurrentRound] = useState(1);
   const [gameStatus, setGameStatus] = useState("Playing");
+  const [digSound] = useSound(grassDig, { volume: 0.1 });
 
   const handleCardClick = (name) => {
+    digSound();
     const hasAlreadyBeenClicked = clickedItems.current.includes(name);
     if (hasAlreadyBeenClicked) {
       setGameStatus("Game Over");
