@@ -5,8 +5,8 @@ export default function ScoreBoard({ gameSettings }) {
     return (
       <>
         <div className="score-board-container">
-          <p>Current Score [ {gameSettings.currentScore} ]</p>
-          <p>Current HighScore [ {gameSettings.currentHighScore} ]</p>
+          <p>Current Score : {gameSettings.currentScore}</p>
+          <p>Current HighScore : {gameSettings.currentHighScore}</p>
         </div>
       </>
     );

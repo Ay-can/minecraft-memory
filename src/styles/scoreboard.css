@@ -3,7 +3,8 @@
 }
 
 .score-board-container > * {
-  color: var(--credit-text-yellow);
   font-size: 0.9rem;
   user-select: none;
+  color: var(--credit-text-yellow);
+  font-weight: 900;
 }
