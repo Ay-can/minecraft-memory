@@ -5,6 +5,6 @@
 .score-board-container > * {
   font-size: 0.9rem;
   user-select: none;
-  color: var(--credit-text-yellow);
+  color: red;
   font-weight: 900;
 }
