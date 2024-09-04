@@ -13,8 +13,7 @@ export default function Background() {
 
   // set Background image
   useEffect(() => {
-    const key = randomBg();
-    return () => clearInterval(key);
+    randomBg();
   }, []);
 
   return (

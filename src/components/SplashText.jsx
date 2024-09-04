@@ -31,9 +31,7 @@ export default function SplashText({ customText }) {
   };
 
   useEffect(() => {
-    const key = chooseSplashText();
-
-    return () => clearInterval(key);
+    chooseSplashText();
   }, []);
 
   if (customText !== undefined) {

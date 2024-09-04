@@ -9,6 +9,8 @@ body {
   padding: 0;
   overflow: hidden;
   box-sizing: border-box;
+  background-image: url("./assets/images/default-background.png");
+  background-size: cover;
 }
 
 :root {
