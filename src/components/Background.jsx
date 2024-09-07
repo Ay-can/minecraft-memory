@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useRef } from "react";
 import { minecraftCherryBg, minecraftRainBg } from "../assets/videos/videos";
 
 export default function Background() {
   const bgOptions = [minecraftCherryBg, minecraftRainBg];
-  const [currentBg, setCurrentBg] = useState(
+  const currentBg = useRef(
     bgOptions[Math.floor(Math.random() * bgOptions.length)]
   );
 
@@ -14,7 +14,7 @@ export default function Background() {
         autoPlay
         muted
         loop
-        src={currentBg}
+        src={currentBg.current}
         type="video/mp4"
       ></video>
     </>

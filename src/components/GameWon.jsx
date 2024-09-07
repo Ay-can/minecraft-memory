@@ -8,12 +8,11 @@ import useSound from "use-sound";
 import { useEffect } from "react";
 
 export default function GameWon({ gameSettings, handleGameModeChange }) {
-  const [levelUpSound, { stop }] = useSound(levelUp, { volume: 0.3 });
+  const [levelUpSound] = useSound(levelUp, { volume: 0.3 });
 
   useEffect(() => {
     levelUpSound();
-    return () => stop();
-  }, [levelUpSound]);
+  });
 
   return (
     <>
